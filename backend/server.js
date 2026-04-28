@@ -33,20 +33,60 @@ app.post("/api/aspirantes", (req, res) => {
 
   console.log("Datos recibidos:", data);
 
-  // Leer el archivo actual (o crear array vacío si no existe)
+  // ✅ VALIDACIÓN 1: Campos obligatorios
+  const camposObligatorios = ["nombre", "edad", "telefono", "email", "descripcion"];
+  const faltanCampos = camposObligatorios.some(campo => !data[campo] || data[campo].trim() === "");
+  
+  if (faltanCampos) {
+    return res.status(400).json({
+      message: "Todos los campos son obligatorios"
+    });
+  }
+
+  // ✅ LECTURA DEL ARCHIVO CON PROTECCIÓN
+  // Si aspirantes.json existe pero JSON está corrupto, detener inmediatamente
   let aspirantes = [];
   if (fs.existsSync(archivoAspirantes)) {
     try {
       const contenido = fs.readFileSync(archivoAspirantes, "utf-8");
       aspirantes = JSON.parse(contenido);
     } catch (error) {
-      console.log("Error al leer aspirantes.json, iniciando con array vacío");
+      console.log("Error al parsear aspirantes.json:", error.message);
+      return res.status(500).json({
+        message: "Error interno al leer los datos. No se guardó la solicitud."
+      });
     }
   }
 
-  // Crear nuevo registro con timestamp e id
+  // ✅ VALIDACIÓN 2: Email duplicado
+  const emailNormalizado = data.email.trim().toLowerCase();
+  const emailExiste = aspirantes.some(aspirante => 
+    aspirante.email.trim().toLowerCase() === emailNormalizado
+  );
+  
+  if (emailExiste) {
+    return res.status(400).json({
+      message: "Este correo ya está registrado"
+    });
+  }
+
+  // ✅ VALIDACIÓN 3: Teléfono duplicado
+  const telefonoNormalizado = data.telefono.trim();
+  const telefonoExiste = aspirantes.some(aspirante => 
+    aspirante.telefono.trim() === telefonoNormalizado
+  );
+  
+  if (telefonoExiste) {
+    return res.status(400).json({
+      message: "Este teléfono ya está registrado"
+    });
+  }
+
+  // ✅ Si todas las validaciones pasaron: Crear nuevo registro con datos limpios
   const nuevoRegistro = {
     ...data,
+    email: emailNormalizado,
+    telefono: telefonoNormalizado,
     timestamp: new Date().toISOString(),
     id: aspirantes.length + 1
   };
