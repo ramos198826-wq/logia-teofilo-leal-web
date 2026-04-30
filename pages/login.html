@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Administrador</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      background: white;
+      padding: 30px;
+      width: 320px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #1f2a44;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #mensaje {
+      margin-top: 15px;
+      text-align: center;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>Acceso Admin</h1>
+
+    <form id="form-login">
+      <input type="text" id="usuario" placeholder="Usuario" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+
+      <button type="submit">Entrar</button>
+    </form>
+
+    <p id="mensaje"></p>
+  </div>
+
+  
+<script>
+  const form = document.getElementById("form-login");
+  const mensaje = document.getElementById("mensaje");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const usuario = document.getElementById("usuario").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      const respuesta = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ usuario, password })
+      });
+
+      const data = await respuesta.json();
+
+      if (!respuesta.ok) {
+        mensaje.textContent = data.message;
+        return;
+      }
+
+      localStorage.setItem("adminLogueado", "true");
+      window.location.href = "panel-aspirantes.html";
+
+    } catch (error) {
+      mensaje.textContent = "Error al conectar con el servidor";
+    }
+  });
+</script>
+
+
+</body>
+</html>

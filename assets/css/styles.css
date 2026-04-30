@@ -1,0 +1,830 @@
+/* ===== CONFIGURACIÓN GENERAL ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #1f1f1f;
+  background: #f4f1ea;
+  transition: background-color 2s ease;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+h1,
+h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* ===== ENCABEZADO ===== */
+.header {
+  background: linear-gradient(rgba(31, 42, 68, 0.9), rgba(31, 42, 68, 0.9)),
+    url("../img/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.header-aspirantes {
+  background: linear-gradient(rgba(31, 42, 68, 0.9), rgba(31, 42, 68, 0.9)),
+    url("../img/fondo-aspirantes.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.header-teofilo {
+  background: linear-gradient(rgba(31, 42, 68, 0.9), rgba(31, 42, 68, 0.9)),
+    url("../img/fondo-teofilo-leal.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  width: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  background: none;
+  padding: 0;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(-30px) scale(0.85);
+  animation: logoEntrada 1.4s ease-out forwards, brilloLogo 2.2s ease-in-out 1.4s 1;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.25);
+  border: none;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.logo:hover {
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.4);
+  transform: scale(1.05);
+}
+
+@keyframes logoEntrada {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.85);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(8px) scale(1.03);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes brilloLogo {
+  0% {
+    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+/* ===== NOMBRE ===== */
+.nombre-logia {
+  font-size: 16px;
+  color: #d4af37;
+  letter-spacing: 2px;
+  margin: 10px 0;
+}
+
+.oriente {
+  font-size: 15px;
+  color: #ffffffcc;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.jurisdiccion {
+  font-size: 12px;
+  color: #d4af37;
+  margin: 0;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.nombre-logia strong {
+  display: block;
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.nombre-logia span {
+  font-size: 14px;
+  color: #ffffffcc;
+}
+
+/* ===== NAV ===== */
+.nav {
+  background: #1e2a44;
+  padding: 10px 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: #d4af37;
+}
+
+/* ===== BOTÓN ASPIRANTES ===== */
+.boton-aspirantes {
+  border: 2px solid #d4af37;
+  color: #d4af37;
+  padding: 8px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.boton-aspirantes:hover {
+  background: #d4af37;
+  color: #1f2a44;
+  transform: scale(1.05);
+}
+
+/* ===== CONTENEDOR ===== */
+.contenedor {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* ===== TARJETAS ===== */
+.tarjeta {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 16px; /* Bordes más suaves */
+  padding: 40px; /* Mejor espaciado interno */
+  margin-bottom: 24px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); /* Mejor sombra */
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: aparecer 0.8s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #1e2a44;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Línea decorativa dorada debajo del título */
+.decorative-line {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d4af37, transparent);
+  margin: 15px auto;
+  width: 60%;
+}
+
+.tarjeta p,
+.tarjeta li {
+  font-size: 16px;
+  color: #2f2f2f;
+}
+
+.tarjeta ul {
+  padding-left: 22px;
+  margin-top: 10px;
+}
+
+.tarjeta p {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Descripción del formulario con mejor espaciado */
+.form-description {
+  margin-bottom: 25px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== BOTÓN ASPIRANTES ===== */
+.boton-aspirantes {
+  border: 2px solid #d4af37;
+  color: #d4af37;
+  padding: 8px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.boton-aspirantes:hover {
+  background: #d4af37;
+  color: #1f2a44;
+  transform: scale(1.05);
+}
+
+/* ===== CLASES AUXILIARES DEL HTML ===== */
+.lista-principios {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-principios li {
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #2f2f2f;
+  line-height: 1.7;
+}
+
+.bloque-grados {
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(248, 246, 241, 0.5);
+  border-left: 3px solid #d4af37;
+  border-radius: 6px;
+}
+
+.bloque-grados p {
+  margin-bottom: 15px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #2f2f2f;
+}
+
+.bloque-grados p:last-child {
+  margin-bottom: 0;
+}
+
+.texto-destacado {
+  margin-top: 20px;
+  font-style: italic;
+  color: #1e2a44;
+  font-size: 15px;
+  padding: 12px;
+  background: rgba(212, 175, 55, 0.08);
+  border-radius: 8px;
+  line-height: 1.7;
+}
+
+.texto-centro {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.bloque-contacto {
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(31, 42, 68, 0.04);
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.bloque-contacto p {
+  margin: 12px 0;
+  font-size: 15px;
+  color: #2f2f2f;
+  line-height: 1.6;
+}
+
+.bloque-contacto p:first-child {
+  margin-top: 0;
+}
+
+.bloque-contacto p:last-child {
+  margin-bottom: 0;
+}
+
+.texto-descriptivo {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2f2f2f;
+}
+
+
+/* ===== MENSAJE SUAVE ===== */
+.mensaje-suave {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #1f1f1f;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.8;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* ===== SECCIÓN FUNDADOR - Mejoras visuales ===== */
+.fundador {
+  text-align: center;
+}
+
+.fundador h2 {
+  color: #1e2a44;
+  margin-bottom: 15px;
+}
+
+.fundador .decorative-line {
+  margin: 15px auto 25px;
+}
+
+.imagen-fundador {
+  cursor: pointer;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 10px auto 22px;
+  display: block;
+  filter: grayscale(100%) contrast(110%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border: 3px solid #f5f5f5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imagen-fundador:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+  filter: grayscale(80%) contrast(120%);
+}
+
+.fundador p {
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #3a3a3a;
+}
+
+/* ===== BOTÓN BLOG / REFERENCIAS - Estilo institucional unificado ===== */
+.boton-blog {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #1e2a44, #2b3b5f);
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+}
+
+.boton-blog:hover {
+  background: #d4af37;
+  color: #1e2a44;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+}
+
+.cartelera {
+  margin-top: 30px;
+  padding: 22px;
+  background: linear-gradient(
+    180deg,
+    rgba(248, 246, 241, 0.95),
+    rgba(255, 255, 255, 0.98)
+  );
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  text-align: center;
+}
+
+.cartelera h3 {
+  margin: 0 0 18px 0;
+  color: #1f2a44;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.cartelera-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px;
+  justify-items: center;
+  align-items: start;
+}
+
+.cartelera-grid img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid rgba(31, 42, 68, 0.08);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  padding: 4px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cartelera-grid img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* ===== SECCIÓN BIENVENIDA - Página Principal ===== */
+.bienvenida {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 246, 241, 0.94));
+}
+
+.bienvenida h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.bienvenida .decorative-line {
+  margin: 15px auto 30px;
+}
+
+/* ===== VISOR DE IMAGEN ===== */
+.visor {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.visor img {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+.cerrar {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* ===== BOTÓN FORMULARIO ASPIRANTES ===== */
+.btn-enviar {
+  padding: 12px 22px;
+  background: linear-gradient(135deg, #1e2a44, #2b3b5f);
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+}
+
+.btn-enviar:hover {
+  background: #d4af37;
+  color: #1e2a44;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.2); /* Sombra mejorada */
+}
+
+/* ===== FORMULARIO ASPIRANTES ===== */
+.tarjeta form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.tarjeta form label {
+  font-weight: 600;
+  color: #1f2a44;
+  margin-bottom: 2px;
+}
+
+.tarjeta form input,
+.tarjeta form textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box; /* Evita que el padding haga overflow */
+  padding: 14px; /* Padding uniforme, icono queda fuera del input */
+  border-radius: 12px; /* Bordes más redondeados */
+  border: 1px solid #d7d7d7;
+  background: #fcfcfc;
+  font-size: 14px;
+  height: 48px; /* Mejor altura */
+  transition: all 0.25s ease;
+}
+
+.tarjeta form input:focus,
+.tarjeta form textarea:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); /* Sombra dorada más intensa */
+  background: #ffffff;
+}
+
+.tarjeta form textarea {
+  resize: none;
+  min-height: 120px; /* Altura cómoda */
+  height: auto;
+}
+
+.mensaje-discrecion {
+  font-size: 18px;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* Contenedor de icono + campo para que el icono quede por fuera */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+  flex: 1;
+}
+
+.input-icon {
+  color: #1e2a44; /* Azul oscuro institucional */
+  font-size: 18px;
+  flex-shrink: 0;
+  pointer-events: none; /* No interfiere con clicks */
+  /* Sin background, border, box-shadow ni dimensiones fijas para un icono limpio */
+}
+
+/* ===== SECCIÓN TEÓFILO LEAL - RESEÑA HISTÓRICA ===== */
+
+/* Icono decorativo arriba del título */
+.icon-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.icon-header i {
+  font-size: 32px;
+  color: #d4af37; /* Dorado institucional */
+  opacity: 0.8;
+}
+
+/* Mejoras visuales a la tarjeta de historia */
+.tarjeta-historia {
+  padding: 50px;
+}
+
+.tarjeta-historia h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 28px;
+  color: #1e2a44;
+  text-align: center;
+}
+
+/* Bloque de contenido con párrafos bien espaciados */
+.historia-content {
+  margin: 30px 0;
+}
+
+.historia-content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #2f2f2f;
+  margin-bottom: 18px;
+  text-align: justify;
+}
+
+.historia-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Contenedor para botón de referencia bibliográfica */
+.historia-btn {
+  text-align: center;
+  margin: 30px 0 20px 0;
+}
+
+/* Botón de referencia con estilo institucional */
+.boton-referencia {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #1e2a44, #2b3b5f);
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s ease;
+  gap: 8px;
+}
+
+.boton-referencia:hover {
+  background: #d4af37;
+  color: #1e2a44;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+}
+
+.boton-referencia i {
+  margin-right: 6px;
+}
+
+/* Contenedor y botón volver con estilo mejorado */
+.volver-contenedor {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.btn-volver {
+  display: inline-block;
+  padding: 10px 18px;
+  background: rgba(31, 42, 68, 0.08);
+  color: #1e2a44;
+  border: 1px solid #d7d7d7;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.btn-volver:hover {
+  background: #1e2a44;
+  color: #d4af37;
+  border-color: #1e2a44;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.btn-volver i {
+  margin-right: 6px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #1f2a44;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.footer-contenido {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-titulo {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.footer-ubicacion {
+  margin-top: 0;
+}
+
+.footer-redes {
+  margin-top: 15px;
+}
+
+.footer-redes a {
+  color: #d4af37;
+  font-size: 22px;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-redes a:hover {
+  color: white;
+}
+
+.footer-copy {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #cccccc;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .logo {
+    width: 90px;
+  }
+
+  .nombre-logia strong {
+    font-size: 18px;
+  }
+
+  .tarjeta {
+    padding: 22px;
+  }
+
+  .tarjeta h2 {
+    font-size: 28px;
+  }
+
+  .imagen-fundador {
+    width: 180px;
+  }
+}
+
+#mensaje-formulario {
+  font-weight: bold;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+#mensaje-formulario.mostrar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#mensaje-formulario.exito {
+  color: #2ecc71;
+}
+
+#mensaje-formulario.error {
+  color: #e74c3c;
+}
