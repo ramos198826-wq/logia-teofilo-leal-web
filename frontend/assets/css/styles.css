@@ -810,3 +810,21 @@ p {
   }
 }
 
+#mensaje-formulario {
+  font-weight: bold;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+#mensaje-formulario.mostrar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#mensaje-formulario.exito {
+  color: #2ecc71;
+}
+
+#mensaje-formulario.error {
+  color: #e74c3c;
+}

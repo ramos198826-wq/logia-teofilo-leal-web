@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Aspirantes</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th {
+      background: #333;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    td, th {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    button {
+      background: #c0392b;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background: #e74c3c;
+    }
+
+    select {
+      padding: 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Panel de Aspirantes</h1>
+  <p>Solicitudes recibidas desde el formulario.</p>
+
+  <div id="resumen" style="text-align:center; margin:20px 0; font-weight:bold;"></div>
+
+  <p style="text-align:center; margin-bottom:20px;">
+  <a href="../index.html">← Volver al inicio</a>
+</p>
+
+  <div id="lista-aspirantes"></div>
+
+  <script>
+    // 🔐 PROTECCIÓN DEL PANEL
+    const logueado = localStorage.getItem("adminLogueado");
+
+    if (logueado !== "true") {
+      alert("Acceso no autorizado");
+      window.location.href = "login.html";
+    }
+
+    // 📦 Cargar aspirantes
+    
+    async function cargarAspirantes() {
+  const contenedor = document.getElementById("lista-aspirantes");
+
+  try {
+    const respuesta = await fetch("/api/aspirantes");
+    const aspirantes = await respuesta.json();
+
+    // 📊 CONTADORES (AQUÍ VA)
+    const total = aspirantes.length;
+
+    const nuevos = aspirantes.filter(a => (a.estado || "Nuevo") === "Nuevo").length;
+    const enProceso = aspirantes.filter(a => a.estado === "En proceso").length;
+    const aprobados = aspirantes.filter(a => a.estado === "Aprobado").length;
+    const rechazados = aspirantes.filter(a => a.estado === "Rechazado").length;
+
+    document.getElementById("resumen").innerHTML = `
+      Total: ${total} |
+      Nuevos: ${nuevos} |
+      En proceso: ${enProceso} |
+      Aprobados: ${aprobados} |
+      Rechazados: ${rechazados}
+    `;
+
+        if (aspirantes.length === 0) {
+          contenedor.innerHTML = "<p>No hay aspirantes registrados.</p>";
+          return;
+        }
+
+        // 🔝 ORDEN AUTOMÁTICO POR ESTADO
+const ordenEstados = {
+  "Nuevo": 1,
+  "Contactado": 2,
+  "En proceso": 3,
+  "Aprobado": 4,
+  "Rechazado": 5
+};
+
+aspirantes.sort((a, b) => {
+  const estadoA = ordenEstados[a.estado || "Nuevo"];
+  const estadoB = ordenEstados[b.estado || "Nuevo"];
+
+  return estadoA - estadoB;
+});
+
+        contenedor.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${aspirantes.map((aspirante, index) => `
+                <tr>
+                  <td>${index + 1}</td>
+                  <td>${aspirante.nombre}</td>
+                  <td>${aspirante.edad}</td>
+                  <td>${aspirante.telefono}</td>
+                  <td>${aspirante.email}</td>
+                  <td>${new Date(aspirante.timestamp).toLocaleString()}</td>
+                  <td>
+                    <select onchange="actualizarEstado(${aspirante.id}, this.value)">
+                      <option value="Nuevo" ${(aspirante.estado || "Nuevo") === "Nuevo" ? "selected" : ""}>Nuevo</option>
+                      <option value="Contactado" ${aspirante.estado === "Contactado" ? "selected" : ""}>Contactado</option>
+                      <option value="En proceso" ${aspirante.estado === "En proceso" ? "selected" : ""}>En proceso</option>
+                      <option value="Aprobado" ${aspirante.estado === "Aprobado" ? "selected" : ""}>Aprobado</option>
+                      <option value="Rechazado" ${aspirante.estado === "Rechazado" ? "selected" : ""}>Rechazado</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button onclick="eliminarAspirante(${aspirante.id})">
+                      ❌ Eliminar
+                    </button>
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        `;
+
+      } catch (error) {
+        contenedor.innerHTML = "<p>Error al cargar los aspirantes.</p>";
+      }
+    }
+
+    // 🔄 Actualizar estado
+    async function actualizarEstado(id, estado) {
+      try {
+        const respuesta = await fetch(`/api/aspirantes/${id}/estado`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ estado })
+        });
+
+        const data = await respuesta.json();
+
+        if (!respuesta.ok) {
+          alert(data.message);
+          return;
+        }
+
+        alert("Estado actualizado correctamente");
+
+      } catch (error) {
+        alert("Error al actualizar el estado");
+      }
+    }
+
+    // ❌ Eliminar aspirante
+    async function eliminarAspirante(id) {
+      const confirmar = confirm("¿Seguro que deseas eliminar este aspirante?");
+      if (!confirmar) return;
+
+      await fetch(`/api/aspirantes/${id}`, {
+        method: "DELETE"
+      });
+
+      cargarAspirantes();
+    }
+
+    // 🚀 Ejecutar
+    cargarAspirantes();
+  </script>
+
+</body>
+</html>

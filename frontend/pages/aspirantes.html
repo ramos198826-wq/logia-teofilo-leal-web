@@ -8,10 +8,10 @@
   <title>Aspirantes - Logia Teófilo Leal N° 115</title>
 
   <!-- CSS principal -->
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="img/favicomm.png" />
+  <link rel="icon" type="image/png" href="../assets/img/favicomm.png" />
 
   <!-- Iconos Font Awesome -->
   <link rel="stylesheet"
@@ -23,13 +23,13 @@
   <!-- ===== NAV ===== -->
   <nav class="nav">
     <div class="nav-links" style="justify-content: center;">
-      <a href="index.html">Inicio</a>
+      <a href="../index.html">Inicio</a>
     </div>
   </nav>
 
   <!-- ===== HEADER ===== -->
   <header class="header header-aspirantes" id="inicio">
-    <img src="img/logo.png" alt="Logo de la Logia" class="logo" />
+    <img src="../assets/img/logo.png" alt="Logo de la Logia" class="logo" />
 
     <p class="nombre-logia">
       RESP∴ LOG∴ TEÓFILO LEAL N°. 115
@@ -101,9 +101,13 @@
 
         <!-- Botón -->
         <div style="text-align: center; margin-top: 15px;">
-          <button type="submit" class="btn-enviar"><i class="fas fa-paper-plane"></i> Enviar Solicitud</button>
+          <button type="submit" class="btn-enviar">
+            <i class="fas fa-paper-plane"></i> Enviar Solicitud
+          </button>
         </div>
 
+       <div id="mensaje-formulario"></div>
+        
         <!-- Mensaje -->
         <p class="mensaje-discrecion">
           Tu información será tratada con absoluta discreción.
@@ -113,7 +117,7 @@
 
       <!-- Volver -->
       <div class="volver-contenedor">
-        <a href="index.html" class="btn-volver">
+       <a href="../index.html" class="btn-volver">
           ← Volver a la página principal
         </a>
       </div>
@@ -164,7 +168,7 @@
   </footer>
 
   <!-- JS -->
-  <script src="js/app.js"></script>
+ <script src="../assets/js/app.js"></script>
 
 </body>
 </html>
