@@ -5,9 +5,21 @@
     "telefono": "04161234567",
     "email": "pedroperez@gmail.com",
     "descripcion": "kdsfas;jkdfsajdvns",
-    "estado": "Nuevo",
+    "estado": "Aprobado",
     "timestamp": "2026-04-29T22:54:23.991Z",
-    "id": 1
+    "id": 1,
+    "historialEstados": [
+      {
+        "estado": "Contactado",
+        "fecha": "2026-05-04T21:17:17.659Z",
+        "nota": "Estado actualizado desde el panel"
+      },
+      {
+        "estado": "Aprobado",
+        "fecha": "2026-05-04T21:37:08.649Z",
+        "nota": "Estado actualizado desde el panel"
+      }
+    ]
   },
   {
     "nombre": "ela mailen ramos",
@@ -15,19 +27,16 @@
     "telefono": "09876543212",
     "email": "elarosa@gmail.com",
     "descripcion": "esta es mi hija hermosa ",
-    "estado": "Nuevo",
+    "estado": "Aprobado",
     "timestamp": "2026-04-29T23:05:58.812Z",
-    "id": 2
-  },
-  {
-    "nombre": "matias ramos",
-    "edad": "34",
-    "telefono": "12345678909",
-    "email": "elmatias@gmail.com",
-    "descripcion": "mi primo genito lo amo mucho ",
-    "estado": "Contactado",
-    "timestamp": "2026-04-29T23:07:25.991Z",
-    "id": 3
+    "id": 2,
+    "historialEstados": [
+      {
+        "estado": "Aprobado",
+        "fecha": "2026-05-04T21:17:21.794Z",
+        "nota": "Estado actualizado desde el panel"
+      }
+    ]
   },
   {
     "nombre": "gilberto ramos",
@@ -35,9 +44,16 @@
     "telefono": "09875674321",
     "email": "estesi@gmail.com",
     "descripcion": "este si es la prueba que frao",
-    "estado": "Nuevo",
+    "estado": "Rechazado",
     "timestamp": "2026-04-29T23:59:22.478Z",
-    "id": 4
+    "id": 4,
+    "historialEstados": [
+      {
+        "estado": "Rechazado",
+        "fecha": "2026-05-04T21:17:26.296Z",
+        "nota": "Estado actualizado desde el panel"
+      }
+    ]
   },
   {
     "nombre": "francisca colmenares",
@@ -45,19 +61,16 @@
     "telefono": "04146543278",
     "email": "chica@gmail.com",
     "descripcion": "esta vecina tienes anos en su vida ",
-    "estado": "Nuevo",
+    "estado": "En proceso",
     "timestamp": "2026-04-30T00:32:40.498Z",
-    "id": 5
-  },
-  {
-    "nombre": "nestor ramos",
-    "edad": "91",
-    "telefono": "09876789546",
-    "email": "eldoctor@gmail.com",
-    "descripcion": "mi abuelo abuelo abuelo ",
-    "estado": "Nuevo",
-    "timestamp": "2026-04-30T01:02:28.959Z",
-    "id": 6
+    "id": 5,
+    "historialEstados": [
+      {
+        "estado": "En proceso",
+        "fecha": "2026-05-04T21:17:32.047Z",
+        "nota": "Estado actualizado desde el panel"
+      }
+    ]
   },
   {
     "nombre": "yaqeulin guerrero",
@@ -65,8 +78,15 @@
     "telefono": "09852345617",
     "email": "layaque@gmail.com",
     "descripcion": "otra embustera mas ",
-    "estado": "Nuevo",
+    "estado": "Rechazado",
     "timestamp": "2026-04-30T01:06:56.676Z",
-    "id": 7
+    "id": 7,
+    "historialEstados": [
+      {
+        "estado": "Rechazado",
+        "fecha": "2026-05-04T21:17:40.193Z",
+        "nota": "Estado actualizado desde el panel"
+      }
+    ]
   }
 ]

@@ -81,13 +81,22 @@ app.post("/api/aspirantes", (req, res) => {
     return res.status(400).json({ message: "Teléfono ya registrado" });
   }
 
+  const fechaActual = new Date().toISOString();
+
   const nuevoRegistro = {
     ...data,
     email: emailNormalizado,
     telefono: telefonoNormalizado,
     estado: "Nuevo",
-    timestamp: new Date().toISOString(),
-    id: aspirantes.length + 1
+    timestamp: fechaActual,
+    id: aspirantes.length + 1,
+    historialEstados: [
+      {
+        estado: "Nuevo",
+        fecha: fechaActual,
+        nota: "Solicitud registrada"
+      }
+    ]
   };
 
   aspirantes.push(nuevoRegistro);
@@ -125,7 +134,20 @@ app.put("/api/aspirantes/:id/estado", (req, res) => {
 
   if (!aspirante) return res.status(404).json({ message: "No encontrado" });
 
+  // actualizar estado
   aspirante.estado = estado;
+
+  // asegurar historial
+  if (!aspirante.historialEstados) {
+    aspirante.historialEstados = [];
+  }
+
+  // guardar en historial
+  aspirante.historialEstados.push({
+    estado,
+    fecha: new Date().toISOString(),
+    nota: "Estado actualizado desde el panel"
+  });
 
   fs.writeFileSync(archivoAspirantes, JSON.stringify(aspirantes, null, 2));
 
