@@ -1,2 +1,19 @@
-[]
+[
+  {
+    "nombre": "gilberto ramos",
+    "edad": "37",
+    "telefono": "04149517629",
+    "email": "ramos198826@gmail.com",
+    "descripcion": "soy mason ",
+    "estado": "Nuevo",
+    "timestamp": "2026-05-07T19:41:53.811Z",
+    "id": 1,
+    "historialEstados": [
+      {
+        "estado": "Nuevo",
+        "fecha": "2026-05-07T19:41:53.811Z",
+        "nota": "Solicitud registrada"
+      }
+    ]
+  }
 ]
