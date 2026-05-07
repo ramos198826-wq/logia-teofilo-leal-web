@@ -1,830 +1,1038 @@
-/* ===== CONFIGURACIÓN GENERAL ===== */
+/* =========================================================
+   LOGIA TEÓFILO LEAL N° 115
+   CSS LIMPIO / SISTEMA VISUAL HOMOGÉNEO
+========================================================= */
+
+/* =======================
+   1. VARIABLES
+======================= */
+:root {
+  --black: #050505;
+  --dark: #0a0c12;
+  --navy: #071a2d;
+  --navy-soft: #0b2138;
+
+  --gold: #d4af37;
+  --gold-soft: #f1d46b;
+  --gold-dim: #b8962e;
+
+  --white: #ffffff;
+  --text: rgba(255, 255, 255, 0.82);
+  --text-soft: rgba(255, 255, 255, 0.64);
+  --border-gold: rgba(212, 175, 55, 0.25);
+
+  --font-title: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+
+  --container: 1180px;
+  --section-padding: 110px 6%;
+
+  --transition: all 0.35s ease;
+  --transition-soft: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* =======================
+   2. BASE
+======================= */
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
-  color: #1f1f1f;
-  background: #f4f1ea;
-  transition: background-color 2s ease;
+  font-family: var(--font-body);
+  color: var(--white);
+  background: linear-gradient(
+    to bottom,
+    var(--black) 0%,
+    var(--dark) 38%,
+    var(--navy) 100%
+  );
 }
 
-section {
-  scroll-margin-top: 80px;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-h1,
-h2 {
-  font-family: 'Playfair Display', serif;
+a {
+  color: inherit;
 }
 
 p {
-  line-height: 1.6;
-}
-
-/* ===== ENCABEZADO ===== */
-.header {
-  background: linear-gradient(rgba(31, 42, 68, 0.9), rgba(31, 42, 68, 0.9)),
-    url("../img/fondo.jpg");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  text-align: center;
-  padding: 80px 20px;
-}
-
-.header-aspirantes {
-  background: linear-gradient(rgba(31, 42, 68, 0.9), rgba(31, 42, 68, 0.9)),
-    url("../img/fondo-aspirantes.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.header-teofilo {
-  background: linear-gradient(rgba(31, 42, 68, 0.9), rgba(31, 42, 68, 0.9)),
-    url("../img/fondo-teofilo-leal.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-/* ===== LOGO ===== */
-.logo {
-  width: 220px;
-  border-radius: 50%;
-  object-fit: cover;
-  aspect-ratio: 1 / 1;
-  background: none;
-  padding: 0;
-  margin-bottom: 15px;
-  opacity: 0;
-  transform: translateY(-30px) scale(0.85);
-  animation: logoEntrada 1.4s ease-out forwards, brilloLogo 2.2s ease-in-out 1.4s 1;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.25);
-  border: none;
-  transition: all 0.4s ease;
-  cursor: pointer;
-}
-
-.logo:hover {
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.4);
-  transform: scale(1.05);
-}
-
-@keyframes logoEntrada {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.85);
-  }
-
-  60% {
-    opacity: 1;
-    transform: translateY(8px) scale(1.03);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes brilloLogo {
-  0% {
-    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
-  }
-
-  50% {
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
-  }
-
-  100% {
-    box-shadow: 0 0 0 rgba(212, 175, 55, 0);
-  }
-}
-
-/* ===== NOMBRE ===== */
-.nombre-logia {
+  color: var(--text);
   font-size: 16px;
-  color: #d4af37;
-  letter-spacing: 2px;
-  margin: 10px 0;
+  line-height: 1.75;
 }
 
-.oriente {
-  font-size: 15px;
-  color: #ffffffcc;
-  margin: 0 0 8px 0;
-  text-align: center;
-}
-
-.jurisdiccion {
-  font-size: 12px;
-  color: #d4af37;
-  margin: 0;
-  text-align: center;
-  opacity: 0.9;
-}
-
-.nombre-logia strong {
-  display: block;
-  font-size: 28px;
-  margin: 10px 0;
-}
-
-.nombre-logia span {
-  font-size: 14px;
-  color: #ffffffcc;
-}
-
-/* ===== NAV ===== */
-.nav {
-  background: #1e2a44;
-  padding: 10px 20px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.nav a:hover {
-  color: #d4af37;
-}
-
-/* ===== BOTÓN ASPIRANTES ===== */
-.boton-aspirantes {
-  border: 2px solid #d4af37;
-  color: #d4af37;
-  padding: 8px 15px;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.boton-aspirantes:hover {
-  background: #d4af37;
-  color: #1f2a44;
-  transform: scale(1.05);
-}
-
-/* ===== CONTENEDOR ===== */
-.contenedor {
-  max-width: 1000px;
-  margin: 30px auto;
-  padding: 0 20px;
-}
-
-/* ===== TARJETAS ===== */
-.tarjeta {
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 16px; /* Bordes más suaves */
-  padding: 40px; /* Mejor espaciado interno */
-  margin-bottom: 24px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1); /* Mejor sombra */
-  border: 1px solid rgba(212, 175, 55, 0.12);
-  opacity: 0;
-  transform: translateY(30px);
-  animation: aparecer 0.8s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tarjeta:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-}
-
-.tarjeta h2 {
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
   margin-top: 0;
-  margin-bottom: 10px;
-  color: #1e2a44;
-  text-align: center;
+}
+
+h1 {
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(34px, 4.5vw, 54px);
+  line-height: 1.15;
+}
+
+h3 {
   font-size: 24px;
 }
 
-/* Línea decorativa dorada debajo del título */
-.decorative-line {
-  border: none;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #d4af37, transparent);
-  margin: 15px auto;
-  width: 60%;
+/* =======================
+   3. LAYOUT GLOBAL
+======================= */
+.section-block {
+  padding: var(--section-padding);
 }
 
-.tarjeta p,
-.tarjeta li {
-  font-size: 16px;
-  color: #2f2f2f;
-}
-
-.tarjeta ul {
-  padding-left: 22px;
-  margin-top: 10px;
-}
-
-.tarjeta p {
-  text-align: center;
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-
-/* Descripción del formulario con mejor espaciado */
-.form-description {
-  margin-bottom: 25px;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-@keyframes aparecer {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== BOTÓN ASPIRANTES ===== */
-.boton-aspirantes {
-  border: 2px solid #d4af37;
-  color: #d4af37;
-  padding: 8px 15px;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.boton-aspirantes:hover {
-  background: #d4af37;
-  color: #1f2a44;
-  transform: scale(1.05);
-}
-
-/* ===== CLASES AUXILIARES DEL HTML ===== */
-.lista-principios {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.lista-principios li {
-  margin-bottom: 12px;
-  font-size: 16px;
-  color: #2f2f2f;
-  line-height: 1.7;
-}
-
-.bloque-grados {
-  margin-top: 20px;
-  padding: 18px;
-  background: rgba(248, 246, 241, 0.5);
-  border-left: 3px solid #d4af37;
-  border-radius: 6px;
-}
-
-.bloque-grados p {
-  margin-bottom: 15px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #2f2f2f;
-}
-
-.bloque-grados p:last-child {
-  margin-bottom: 0;
-}
-
-.texto-destacado {
-  margin-top: 20px;
-  font-style: italic;
-  color: #1e2a44;
-  font-size: 15px;
-  padding: 12px;
-  background: rgba(212, 175, 55, 0.08);
-  border-radius: 8px;
-  line-height: 1.7;
-}
-
-.texto-centro {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.bloque-contacto {
-  margin-top: 20px;
-  padding: 18px;
-  background: rgba(31, 42, 68, 0.04);
-  border-radius: 10px;
-  border: 1px solid rgba(212, 175, 55, 0.15);
-}
-
-.bloque-contacto p {
-  margin: 12px 0;
-  font-size: 15px;
-  color: #2f2f2f;
-  line-height: 1.6;
-}
-
-.bloque-contacto p:first-child {
-  margin-top: 0;
-}
-
-.bloque-contacto p:last-child {
-  margin-bottom: 0;
-}
-
-.texto-descriptivo {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 16px;
-  line-height: 1.7;
-  color: #2f2f2f;
-}
-
-
-/* ===== MENSAJE SUAVE ===== */
-.mensaje-suave {
-  margin-top: 15px;
-  font-size: 18px;
-  color: #1f1f1f;
-  font-style: italic;
-  text-align: center;
-  line-height: 1.8;
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-/* ===== SECCIÓN FUNDADOR - Mejoras visuales ===== */
-.fundador {
-  text-align: center;
-}
-
-.fundador h2 {
-  color: #1e2a44;
-  margin-bottom: 15px;
-}
-
-.fundador .decorative-line {
-  margin: 15px auto 25px;
-}
-
-.imagen-fundador {
-  cursor: pointer;
-  width: 220px;
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  margin: 10px auto 22px;
-  display: block;
-  filter: grayscale(100%) contrast(110%);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border: 3px solid #f5f5f5;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.imagen-fundador:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
-  filter: grayscale(80%) contrast(120%);
-}
-
-.fundador p {
-  max-width: 650px;
+.section-container {
+  max-width: var(--container);
   margin: 0 auto;
-  font-size: 16px;
-  line-height: 1.8;
-  color: #3a3a3a;
 }
 
-/* ===== BOTÓN BLOG / REFERENCIAS - Estilo institucional unificado ===== */
-.boton-blog {
-  display: inline-block;
-  margin-top: 16px;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #1e2a44, #2b3b5f);
-  color: #d4af37;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.3px;
-  border: 1px solid #d4af37;
-  border-radius: 10px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  transition: all 0.25s ease;
+.section-narrow {
+  max-width: 820px;
 }
 
-.boton-blog:hover {
-  background: #d4af37;
-  color: #1e2a44;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
-}
-
-.cartelera {
-  margin-top: 30px;
-  padding: 22px;
-  background: linear-gradient(
-    180deg,
-    rgba(248, 246, 241, 0.95),
-    rgba(255, 255, 255, 0.98)
-  );
-  border: 1px solid rgba(212, 175, 55, 0.18);
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+.section-center {
   text-align: center;
 }
 
-.cartelera h3 {
-  margin: 0 0 18px 0;
-  color: #1f2a44;
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  letter-spacing: 0.5px;
-  font-weight: 500;
+.section-header-center {
+  max-width: 820px;
+  margin: 0 auto 60px;
+  text-align: center;
 }
 
-.cartelera-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 18px;
-  justify-items: center;
-  align-items: start;
+.section-header-left {
+  max-width: 760px;
+  margin-bottom: 42px;
 }
 
-.cartelera-grid img {
+.section-content {
+  max-width: 560px;
+}
+
+.section-label {
+  display: inline-block;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.section-divider {
   width: 100%;
-  max-width: 150px;
-  height: auto;
-  display: block;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(212, 175, 55, 0.55),
+    transparent
+  );
+  margin: 0 auto 60px;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.section-image img {
+  width: 100%;
   border-radius: 10px;
-  border: 1px solid rgba(31, 42, 68, 0.08);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-  background: #ffffff;
-  padding: 4px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 
-.cartelera-grid img:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+/* =======================
+   4. NAVBAR
+======================= */
+.nav-stitch {
+  height: 80px;
+  width: 100%;
+  padding: 0 60px;
+  background: rgba(5, 5, 5, 0.9);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  transition: height 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ===== SECCIÓN BIENVENIDA - Página Principal ===== */
+.nav-stitch.scrolled {
+  height: 68px;
+  background: rgba(5, 5, 5, 0.96);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.logo-nav {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.nav-links-stitch {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links-stitch a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: var(--transition);
+}
+
+.nav-links-stitch a:hover,
+.nav-links-stitch .activo {
+  color: var(--gold);
+}
+
+/* =======================
+   5. BOTONES
+======================= */
+.btn-nav-stitch,
+.btn-gold,
+.btn-hero-radical {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--black);
+  padding: 13px 24px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid transparent;
+  transition: var(--transition-soft);
+}
+
+.btn-nav-stitch {
+  font-size: 13px;
+  padding: 12px 20px;
+}
+
+.btn-hero-secundario,
+.btn-outline {
+  display: inline-block;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  color: var(--gold);
+  padding: 13px 24px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  transition: var(--transition-soft);
+}
+
+.btn-nav-stitch:hover,
+.btn-gold:hover,
+.btn-hero-radical:hover {
+  background: var(--gold-soft);
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.35);
+  transform: translateY(-3px);
+}
+
+.btn-hero-secundario:hover,
+.btn-outline:hover {
+  background: rgba(212, 175, 55, 0.12);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.22);
+  transform: translateY(-3px);
+}
+
+/* =======================
+   6. HERO
+======================= */
+.hero-radical {
+  min-height: calc(100vh - 80px);
+  padding: 120px 6%;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.86)),
+    url("../img/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-radical-content {
+  max-width: 850px;
+}
+
+.hero-linea {
+  display: block;
+  width: 90px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 24px;
+}
+
+.hero-radical h1 {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 22px;
+}
+
+.hero-radical p {
+  max-width: 720px;
+  margin: 0 auto 30px;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =======================
+   7. BIENVENIDA
+======================= */
 .bienvenida {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 246, 241, 0.94));
+  background: var(--black);
 }
 
 .bienvenida h2 {
-  font-size: 32px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
-.bienvenida .decorative-line {
-  margin: 15px auto 30px;
-}
-
-/* ===== VISOR DE IMAGEN ===== */
-.visor {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  padding-top: 60px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.visor img {
-  margin: auto;
+.bienvenida h2::after {
+  content: "";
   display: block;
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 10px;
+  width: 55%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.45);
+  margin: 22px auto 0;
 }
 
-.cerrar {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: white;
-  font-size: 40px;
-  cursor: pointer;
+.mensaje-suave {
+  color: var(--gold);
+  margin-top: 18px;
 }
 
-/* ===== BOTÓN FORMULARIO ASPIRANTES ===== */
-.btn-enviar {
-  padding: 12px 22px;
-  background: linear-gradient(135deg, #1e2a44, #2b3b5f);
-  color: #d4af37;
-  border: 1px solid #d4af37;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.3px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  transition: all 0.25s ease;
+/* =======================
+   8. PILARES
+======================= */
+.pilares-stitch {
+  background: var(--black);
+  padding-top: 40px;
 }
 
-.btn-enviar:hover {
-  background: #d4af37;
-  color: #1e2a44;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.2); /* Sombra mejorada */
-}
-
-/* ===== FORMULARIO ASPIRANTES ===== */
-.tarjeta form {
+.pilares-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  margin-top: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 46px;
+  text-align: center;
 }
 
-.tarjeta form label {
-  font-weight: 600;
-  color: #1f2a44;
-  margin-bottom: 2px;
+.pilar-item {
+  transition: var(--transition);
 }
 
-.tarjeta form input,
-.tarjeta form textarea {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box; /* Evita que el padding haga overflow */
-  padding: 14px; /* Padding uniforme, icono queda fuera del input */
-  border-radius: 12px; /* Bordes más redondeados */
-  border: 1px solid #d7d7d7;
-  background: #fcfcfc;
-  font-size: 14px;
-  height: 48px; /* Mejor altura */
-  transition: all 0.25s ease;
+.pilar-item:hover {
+  transform: translateY(-5px);
 }
 
-.tarjeta form input:focus,
-.tarjeta form textarea:focus {
-  outline: none;
-  border-color: #d4af37;
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); /* Sombra dorada más intensa */
-  background: #ffffff;
+.pilar-item span {
+  color: rgba(212, 175, 55, 0.55);
+  font-size: 13px;
+  font-weight: 700;
 }
 
-.tarjeta form textarea {
-  resize: none;
-  min-height: 120px; /* Altura cómoda */
-  height: auto;
-}
-
-.mensaje-discrecion {
+.pilar-item h3 {
+  color: var(--gold);
   font-size: 18px;
-  color: #555;
-  margin-top: 5px;
+  margin: 14px 0 12px;
 }
 
-/* Contenedor de icono + campo para que el icono quede por fuera */
-.input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.input-wrapper input,
-.input-wrapper textarea {
-  flex: 1;
-}
-
-.input-icon {
-  color: #1e2a44; /* Azul oscuro institucional */
-  font-size: 18px;
-  flex-shrink: 0;
-  pointer-events: none; /* No interfiere con clicks */
-  /* Sin background, border, box-shadow ni dimensiones fijas para un icono limpio */
-}
-
-/* ===== SECCIÓN TEÓFILO LEAL - RESEÑA HISTÓRICA ===== */
-
-/* Icono decorativo arriba del título */
-.icon-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.icon-header i {
-  font-size: 32px;
-  color: #d4af37; /* Dorado institucional */
-  opacity: 0.8;
-}
-
-/* Mejoras visuales a la tarjeta de historia */
-.tarjeta-historia {
-  padding: 50px;
-}
-
-.tarjeta-historia h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 28px;
-  color: #1e2a44;
-  text-align: center;
-}
-
-/* Bloque de contenido con párrafos bien espaciados */
-.historia-content {
-  margin: 30px 0;
-}
-
-.historia-content p {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #2f2f2f;
-  margin-bottom: 18px;
-  text-align: justify;
-}
-
-.historia-content p:last-child {
-  margin-bottom: 0;
-}
-
-/* Contenedor para botón de referencia bibliográfica */
-.historia-btn {
-  text-align: center;
-  margin: 30px 0 20px 0;
-}
-
-/* Botón de referencia con estilo institucional */
-.boton-referencia {
-  display: inline-block;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, #1e2a44, #2b3b5f);
-  color: #d4af37;
-  border: 1px solid #d4af37;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: 0.3px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  transition: all 0.25s ease;
-  gap: 8px;
-}
-
-.boton-referencia:hover {
-  background: #d4af37;
-  color: #1e2a44;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
-}
-
-.boton-referencia i {
-  margin-right: 6px;
-}
-
-/* Contenedor y botón volver con estilo mejorado */
-.volver-contenedor {
-  text-align: center;
-  margin-top: 25px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(212, 175, 55, 0.15);
-}
-
-.btn-volver {
-  display: inline-block;
-  padding: 10px 18px;
-  background: rgba(31, 42, 68, 0.08);
-  color: #1e2a44;
-  border: 1px solid #d7d7d7;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
+.pilar-item p {
+  color: var(--text-soft);
   font-size: 14px;
-  transition: all 0.25s ease;
-}
-
-.btn-volver:hover {
-  background: #1e2a44;
-  color: #d4af37;
-  border-color: #1e2a44;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-}
-
-.btn-volver i {
-  margin-right: 6px;
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  background: #1f2a44;
-  color: white;
-  padding: 30px 20px;
-  text-align: center;
-  margin-top: 30px;
-}
-
-.footer-contenido {
-  max-width: 900px;
+  max-width: 250px;
   margin: 0 auto;
 }
 
-.footer-titulo {
-  font-weight: bold;
-  margin-bottom: 6px;
+/* =======================
+   9. MASONERÍA
+======================= */
+.masoneria-stitch {
+  background: var(--navy);
 }
 
-.footer-ubicacion {
-  margin-top: 0;
+.masoneria-lista {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+}
+
+.masoneria-lista li {
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.masoneria-lista li::before {
+  content: "•";
+  color: var(--gold);
+  margin-right: 10px;
+}
+
+/* =======================
+   10. LOGIA / INFO CARDS
+======================= */
+.logia-stitch {
+  background: var(--dark);
+}
+
+.logia-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.logia-main h3,
+.info-card h3,
+.info-card h4 {
+  color: var(--white);
+}
+
+.logia-side {
+  display: grid;
+  gap: 18px;
+}
+
+.info-card,
+.actividad-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-top-color: rgba(212, 175, 55, 0.42);
+  border-radius: 10px;
+  padding: 34px 30px;
+  transition: var(--transition-soft);
+}
+
+.info-card:hover,
+.actividad-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.65);
+  box-shadow:
+    0 18px 38px rgba(0, 0, 0, 0.38),
+    0 0 18px rgba(212, 175, 55, 0.10);
+}
+
+/* =======================
+   11. TEÓFILO
+======================= */
+.teofilo-stitch {
+  background: var(--dark);
+}
+
+.teofilo-grid {
+  max-width: 1050px;
+}
+
+.teofilo-img {
+  display: flex;
+  justify-content: center;
+}
+
+.teofilo-img img {
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
+}
+
+.teofilo-content {
+  max-width: 520px;
+}
+
+/* =======================
+   12. ASPIRANTES
+======================= */
+.aspirantes-stitch {
+  background: var(--navy);
+  border-top: 1px solid rgba(212, 175, 55, 0.14);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.14);
+}
+
+.section-icon {
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.aspirantes-grid {
+  max-width: 820px;
+  margin: 0 auto 36px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  text-align: left;
+}
+
+.asp-box h3 {
+  color: var(--gold);
+}
+
+.asp-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.asp-box li {
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+/* =======================
+   13. ACTIVIDADES
+======================= */
+.actividades-stitch {
+  background:
+    radial-gradient(circle at top left, rgba(212, 175, 55, 0.08), transparent 35%),
+    var(--dark);
+}
+
+.actividades-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 70px;
+}
+
+.actividad-card {
+  text-align: left;
+  min-height: 260px;
+}
+
+.actividad-card i {
+  color: var(--gold);
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.actividad-card h3 {
+  color: var(--gold);
+  font-size: 22px;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.actividad-card p {
+  color: var(--text-soft);
+  margin: 0;
+}
+
+/* =======================
+   14. CARTELERA
+======================= */
+.cartelera {
+  margin-top: 20px;
+}
+
+.cartelera-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 34px;
+}
+
+.cartelera-header h3 {
+  color: var(--white);
+  font-size: clamp(34px, 4vw, 48px);
+  margin: 0;
+}
+
+.cartelera-header p {
+  color: var(--text-soft);
+  max-width: 420px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.cartelera-controles {
+  display: flex;
+  gap: 12px;
+}
+
+.cartelera-btn {
+  width: 42px;
+  height: 42px;
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.38);
+  color: var(--gold);
+  font-size: 28px;
+  cursor: pointer;
+  transition: var(--transition-soft);
+}
+
+.cartelera-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.35);
+}
+
+.cartelera-slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.cartelera-track {
+  display: flex;
+  gap: 28px;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cartelera-item {
+  flex: 0 0 calc((100% - 56px) / 3);
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 16 / 10;
+  background: var(--black);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.img-cartel {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) brightness(0.72);
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+.cartelera-item::after {
+  content: "Ver crónica";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 12, 18, 0.68);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: 0;
+  transition: var(--transition-soft);
+}
+
+.cartelera-item:hover .img-cartel {
+  transform: scale(1.1);
+  filter: grayscale(0%) brightness(1);
+}
+
+.cartelera-item:hover::after {
+  opacity: 1;
+}
+
+/* =======================
+   15. CONTACTO
+======================= */
+.contacto-stitch {
+  background: var(--navy);
+}
+
+.contacto-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* =======================
+   16. FOOTER
+======================= */
+.footer {
+  background: var(--black);
+  border-top: 1px solid rgba(212, 175, 55, 0.24);
+  padding: 34px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer p {
+  margin: 4px 0;
+  font-size: 13px;
+}
+
+.footer-titulo {
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .footer-redes {
-  margin-top: 15px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .footer-redes a {
-  color: #d4af37;
-  font-size: 22px;
-  margin: 0 10px;
+  color: var(--gold);
+  font-size: 18px;
   text-decoration: none;
-  transition: 0.3s;
+  transition: var(--transition);
 }
 
 .footer-redes a:hover {
-  color: white;
+  color: var(--gold-soft);
+  transform: translateY(-2px);
 }
 
-.footer-copy {
-  margin-top: 20px;
-  font-size: 13px;
-  color: #cccccc;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .logo {
-    width: 90px;
-  }
-
-  .nombre-logia strong {
-    font-size: 18px;
-  }
-
-  .tarjeta {
-    padding: 22px;
-  }
-
-  .tarjeta h2 {
-    font-size: 28px;
-  }
-
-  .imagen-fundador {
-    width: 180px;
-  }
-}
-
-#mensaje-formulario {
-  font-weight: bold;
-  transition: all 0.3s ease;
+/* =======================
+   17. ANIMACIONES
+======================= */
+.fade-in-section {
   opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
-#mensaje-formulario.mostrar {
+.fade-in-section.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/* =======================
+   18. RESPONSIVE
+======================= */
+@media (max-width: 1050px) {
+  .nav-stitch {
+    padding: 0 28px;
+  }
+
+  .nav-links-stitch {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --section-padding: 82px 6%;
+  }
+
+  .nav-stitch {
+    height: auto;
+    padding: 18px 22px;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .nav-links-stitch {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .two-column,
+  .logia-grid,
+  .aspirantes-grid,
+  .actividades-grid,
+  .pilares-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header-left,
+  .section-header-center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cartelera-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cartelera-item {
+    flex: 0 0 100%;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-radical {
+    min-height: 82vh;
+    padding: 90px 22px;
+  }
+
+  .hero-radical h1 {
+    font-size: 34px;
+  }
+
+  .hero-radical p {
+    font-size: 15px;
+  }
+
+  .nav-brand span {
+    font-size: 12px;
+  }
+
+  .nav-links-stitch a {
+    font-size: 10px;
+  }
+
+  .btn-nav-stitch {
+    padding: 10px 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-block {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .info-card,
+  .actividad-card {
+    padding: 28px 22px;
+  }
+
+  .teofilo-img img {
+    max-width: 280px;
+  }
+}
+
+/* =========================================================
+   PÁGINAS INTERNAS: ASPIRANTES / TEÓFILO
+========================================================= */
+
+.hero-page {
+  min-height: 52vh;
+  padding: 100px 6%;
+}
+
+.hero-page h1 {
+  font-size: clamp(36px, 5vw, 58px);
+}
+
+/* ===== FORMULARIO ASPIRANTES ===== */
+
+.form-card {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.form-aspirante {
+  margin-top: 20px;
+}
+
+.form-aspirante label {
+  display: block;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  margin: 22px 0 8px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+.textarea-wrapper .input-icon {
+  top: 22px;
+  transform: none;
+}
+
+.form-aspirante input,
+.form-aspirante textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  color: var(--white);
+  padding: 14px 16px 14px 46px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-aspirante textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.form-aspirante input:focus,
+.form-aspirante textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.16);
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.btn-submit {
+  cursor: pointer;
+}
+
+.btn-submit i {
+  margin-right: 8px;
+}
+
+#mensaje-formulario {
+  margin-top: 18px;
+  transition: opacity 0.3s ease;
+}
+
+#mensaje-formulario.mostrar {
+  text-align: center;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
 #mensaje-formulario.exito {
-  color: #2ecc71;
+  color: #b7ffd0;
+  background: rgba(10, 122, 40, 0.18);
+  border: 1px solid rgba(10, 122, 40, 0.55);
 }
 
 #mensaje-formulario.error {
-  color: #e74c3c;
+  color: #ffd0d0;
+  background: rgba(176, 0, 32, 0.18);
+  border: 1px solid rgba(176, 0, 32, 0.55);
+}
+
+#mensaje-formulario.info {
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.10);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.mensaje-discrecion {
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 14px;
+  margin-top: 18px;
+}
+
+.volver-contenedor {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* ===== HISTORIA TEÓFILO ===== */
+
+.historia-card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.historia-content {
+  margin-top: 20px;
+}
+
+.historia-content p {
+  color: var(--text);
+  text-align: justify;
+  margin-bottom: 22px;
+}
+
+.historia-content p:first-child::first-letter {
+  color: var(--gold);
+  font-family: var(--font-title);
+  font-size: 48px;
+  line-height: 1;
+  padding-right: 6px;
+}
+
+.historia-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 34px;
+}
+
+.historia-actions i {
+  margin-right: 8px;
+}
+
+/* ===== RESPONSIVE INTERNAS ===== */
+
+@media (max-width: 600px) {
+  .hero-page {
+    min-height: 46vh;
+    padding: 80px 22px;
+  }
+
+  .historia-content p {
+    text-align: left;
+  }
+
+  .historia-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-card,
+  .historia-card {
+    padding: 28px 20px;
+  }
 }

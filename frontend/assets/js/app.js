@@ -5,67 +5,47 @@ const frasesLocales = [
   "La luz se encuentra en la búsqueda sincera de la verdad.",
   "Cada paso con disciplina fortalece el templo interior.",
   "La verdad se honra con obras, no solo con palabras.",
-  "El estudio y la rectitud elevan el carácter del hombre."
+  "El estudio y la rectitud eleva el carácter del hombre."
 ];
 
-let indiceActual = 0;
-let ultimoColor = "";
+function activarMensajeBienvenida() {
+  const mensaje = document.getElementById("mensaje");
+  if (!mensaje) return;
+
+  const indice = Math.floor(Math.random() * frasesLocales.length);
+  mensaje.innerHTML = `<em>${frasesLocales[indice]}</em>`;
+}
 
 function activarFormularioAspirante() {
-  const formularioAspirante = document.getElementById("form-aspirante");
+  const formulario = document.getElementById("form-aspirante");
   const mensajeFormulario = document.getElementById("mensaje-formulario");
 
-  if (!formularioAspirante || !mensajeFormulario) return;
+  if (!formulario || !mensajeFormulario) return;
 
-  function mostrarMensaje(texto, tipo) {
+  function mostrarMensaje(texto, tipo = "info") {
     mensajeFormulario.textContent = texto;
     mensajeFormulario.className = "";
+    mensajeFormulario.classList.add("mostrar", tipo);
 
     mensajeFormulario.style.display = "block";
-    mensajeFormulario.style.textAlign = "center";
-    mensajeFormulario.style.margin = "15px auto";
-    mensajeFormulario.style.padding = "12px";
-    mensajeFormulario.style.borderRadius = "8px";
-    mensajeFormulario.style.fontSize = "16px";
-    mensajeFormulario.style.fontWeight = "bold";
     mensajeFormulario.style.opacity = "1";
 
-    if (tipo === "exito") {
-      mensajeFormulario.classList.add("mostrar", "exito");
-      mensajeFormulario.style.color = "#0a7a28";
-      mensajeFormulario.style.backgroundColor = "#e8f8ee";
-      mensajeFormulario.style.border = "1px solid #0a7a28";
-    } else if (tipo === "error") {
-      mensajeFormulario.classList.add("mostrar", "error");
-      mensajeFormulario.style.color = "#b00020";
-      mensajeFormulario.style.backgroundColor = "#fdecec";
-      mensajeFormulario.style.border = "1px solid #b00020";
-    } else {
-      mensajeFormulario.classList.add("mostrar");
-      mensajeFormulario.style.color = "#1e2a44";
-      mensajeFormulario.style.backgroundColor = "#f4f1ea";
-      mensajeFormulario.style.border = "1px solid #d4af37";
-    }
-  // ⏱️ Desaparece después de 3 segundos
-setTimeout(() => {
-  mensajeFormulario.style.opacity = "0";
-  mensajeFormulario.className = "";
+    setTimeout(() => {
+      mensajeFormulario.style.opacity = "0";
 
-  // opcional: limpiar texto después de desaparecer
-  setTimeout(() => {
-    mensajeFormulario.textContent = "";
-  }, 300);
-}, 3000);
-  
-  
+      setTimeout(() => {
+        mensajeFormulario.textContent = "";
+        mensajeFormulario.className = "";
+      }, 300);
+    }, 3000);
   }
 
-  formularioAspirante.addEventListener("submit", async function (e) {
+  formulario.addEventListener("submit", async function (e) {
     e.preventDefault();
 
     mostrarMensaje("Enviando solicitud...", "info");
 
-    const formData = new FormData(formularioAspirante);
+    const formData = new FormData(formulario);
     const data = Object.fromEntries(formData.entries());
 
     try {
@@ -84,11 +64,10 @@ setTimeout(() => {
         return;
       }
 
-      formularioAspirante.reset();
+      formulario.reset();
       mostrarMensaje("Solicitud enviada correctamente ✅", "exito");
 
       console.log("Respuesta del backend:", result);
-
     } catch (error) {
       mostrarMensaje("Error de conexión con el servidor ❌", "error");
       console.log("ERROR BACKEND:", error);
@@ -96,6 +75,106 @@ setTimeout(() => {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function activarNavbarSticky() {
+  const nav = document.querySelector(".nav-stitch");
+  if (!nav) return;
+
+  function manejarScroll() {
+    if (window.scrollY > 50) {
+      nav.classList.add("scrolled");
+    } else {
+      nav.classList.remove("scrolled");
+    }
+  }
+
+  manejarScroll();
+  window.addEventListener("scroll", manejarScroll);
+}
+
+function activarCarruselCartelera() {
+  const track = document.getElementById("cartelera-track");
+  const btnPrev = document.getElementById("btn-cartelera-prev");
+  const btnNext = document.getElementById("btn-cartelera-next");
+
+  if (!track || !btnPrev || !btnNext) return;
+
+  const totalItems = track.children.length;
+  let posicion = 0;
+  let autoplay;
+
+  function obtenerVisibles() {
+    return window.innerWidth <= 900 ? 1 : 3;
+  }
+
+  function obtenerAnchoItem() {
+    const item = track.children[0];
+    const gap = 28;
+    return item.offsetWidth + gap;
+  }
+
+  function moverCarrusel() {
+    const visibles = obtenerVisibles();
+    const maxPosicion = totalItems - visibles;
+
+    if (posicion > maxPosicion) posicion = 0;
+    if (posicion < 0) posicion = maxPosicion;
+
+    track.style.transform = `translateX(-${posicion * obtenerAnchoItem()}px)`;
+  }
+
+  btnNext.addEventListener("click", () => {
+    posicion++;
+    moverCarrusel();
+  });
+
+  btnPrev.addEventListener("click", () => {
+    posicion--;
+    moverCarrusel();
+  });
+
+  function iniciarAutoplay() {
+    detenerAutoplay();
+    autoplay = setInterval(() => {
+      posicion++;
+      moverCarrusel();
+    }, 5000);
+  }
+
+  function detenerAutoplay() {
+    if (autoplay) clearInterval(autoplay);
+  }
+
+  track.addEventListener("mouseenter", detenerAutoplay);
+  track.addEventListener("mouseleave", iniciarAutoplay);
+
+  window.addEventListener("resize", moverCarrusel);
+
+  moverCarrusel();
+  iniciarAutoplay();
+}
+
+function activarAnimacionesScroll() {
+  const secciones = document.querySelectorAll(".fade-in-section");
+  if (!secciones.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  secciones.forEach((section) => observer.observe(section));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  activarMensajeBienvenida();
   activarFormularioAspirante();
+  activarNavbarSticky();
+  activarCarruselCartelera();
+  activarAnimacionesScroll();
 });

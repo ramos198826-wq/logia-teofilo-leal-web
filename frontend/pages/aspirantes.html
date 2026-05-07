@@ -1,174 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Aspirantes - Logia Teófilo Leal N° 115</title>
 
-  <!-- CSS principal -->
   <link rel="stylesheet" href="../assets/css/styles.css" />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="../assets/img/favicomm.png" />
 
-  <!-- Iconos Font Awesome -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 </head>
 
 <body>
 
-  <!-- ===== NAV ===== -->
-  <nav class="nav">
-    <div class="nav-links" style="justify-content: center;">
-      <a href="../index.html">Inicio</a>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="nav-stitch">
+    <div class="nav-brand">
+      <img src="../assets/img/logo.png" alt="Logo Logia Teófilo Leal N° 115" class="logo-nav" />
+      <span>LOGIA TEÓFILO LEAL N° 115</span>
     </div>
+
+    <div class="nav-links-stitch">
+      <a href="../index.html#inicio">Inicio</a>
+      <a href="../index.html#masoneria">Masonería</a>
+      <a href="../index.html#quienes">Quiénes somos</a>
+      <a href="../index.html#aspirantes" class="activo">Aspirantes</a>
+      <a href="../index.html#actividades">Actividades</a>
+      <a href="../index.html#contacto">Contacto</a>
+    </div>
+
+    <a href="../index.html" class="btn-nav-stitch">
+      Volver
+    </a>
   </nav>
 
-  <!-- ===== HEADER ===== -->
-  <header class="header header-aspirantes" id="inicio">
-    <img src="../assets/img/logo.png" alt="Logo de la Logia" class="logo" />
+  <!-- ===== HERO ASPIRANTES ===== -->
+  <header class="hero-radical hero-page">
+    <div class="hero-radical-content">
+      <span class="hero-linea"></span>
 
-    <p class="nombre-logia">
-      RESP∴ LOG∴ TEÓFILO LEAL N°. 115
-    </p>
+      <h1>Formulario para Aspirantes</h1>
 
-    <p class="oriente">
-      Oriente de Barquisimeto
-    </p>
-
-    <p class="jurisdiccion">
-      Bajo la jurisdicción de la Gran Logia de la República de Venezuela
-    </p>
+      <p>
+        Si deseas conocer más sobre la Masonería y el proceso de ingreso a nuestra Logia,
+        completa el siguiente formulario con tus datos.
+      </p>
+    </div>
   </header>
 
-  <!-- ===== CONTENIDO PRINCIPAL ===== -->
-  <main class="contenedor">
+  <!-- ===== FORMULARIO ===== -->
+  <main>
+    <section class="section-block fade-in-section">
+      <div class="section-container section-narrow">
+        <div class="info-card form-card">
+          <div class="section-header-center">
+            <span class="section-label">Proceso de ingreso</span>
 
-    <!-- ===== TARJETA FORMULARIO ===== -->
-    <section class="tarjeta">
+            <h2>Solicitud de información</h2>
 
-      <h2>Formulario para Aspirantes</h2>
-      <hr class="decorative-line" />
+            <p>
+              Tu solicitud será recibida con discreción y respeto. Un representante de la
+              Logia podrá contactarte para brindarte mayor orientación.
+            </p>
+          </div>
 
-      <p class="form-description">
-        Si estás interesado en unirte a nuestra logia y explorar los principios de la masonería,
-        por favor completa el siguiente formulario con tus datos. Nos pondremos en contacto contigo
-        a la brevedad para proporcionarte más información.
-      </p>
+          <form id="form-aspirante" class="form-aspirante">
 
-      <!-- ===== FORMULARIO ===== -->
-      <form id="form-aspirante" >
+            <label for="nombre">Nombre y Apellido</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user input-icon"></i>
+              <input type="text" id="nombre" name="nombre" required />
+            </div>
 
-        <!-- Nombre -->
-        <label for="nombre">Nombre y Apellido:</label>
-        <div class="input-wrapper">
-          <i class="fas fa-user input-icon"></i>
-          <input type="text" id="nombre" name="nombre" required />
+            <label for="edad">Edad</label>
+            <div class="input-wrapper">
+              <i class="fas fa-birthday-cake input-icon"></i>
+              <input type="number" id="edad" name="edad" min="18" required />
+            </div>
+
+            <label for="telefono">Teléfono</label>
+            <div class="input-wrapper">
+              <i class="fas fa-phone input-icon"></i>
+              <input type="tel" id="telefono" name="telefono" required />
+            </div>
+
+            <label for="email">Correo Electrónico</label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope input-icon"></i>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <label for="descripcion">
+              Breve descripción de tu interés por la Masonería
+            </label>
+            <div class="input-wrapper textarea-wrapper">
+              <i class="fas fa-comment input-icon"></i>
+              <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-gold btn-submit">
+                <i class="fas fa-paper-plane"></i>
+                Enviar Solicitud
+              </button>
+            </div>
+
+            <div id="mensaje-formulario"></div>
+
+            <p class="mensaje-discrecion">
+              Tu información será tratada con absoluta discreción.
+            </p>
+          </form>
+
+          <div class="volver-contenedor">
+            <a href="../index.html" class="btn-outline">
+              ← Volver a la página principal
+            </a>
+          </div>
         </div>
-
-        <!-- Edad -->
-        <label for="edad">Edad:</label>
-        <div class="input-wrapper">
-          <i class="fas fa-birthday-cake input-icon"></i>
-          <input type="number" id="edad" name="edad" min="18" required />
-        </div>
-
-        <!-- Teléfono -->
-        <label for="telefono">Teléfono:</label>
-        <div class="input-wrapper">
-          <i class="fas fa-phone input-icon"></i>
-          <input type="tel" id="telefono" name="telefono" required />
-        </div>
-
-        <!-- Email -->
-        <label for="email">Correo Electrónico:</label>
-        <div class="input-wrapper">
-          <i class="fas fa-envelope input-icon"></i>
-          <input type="email" id="email" name="email" required />
-        </div>
-
-        <!-- Descripción -->
-        <label for="descripcion">
-          Déjanos una breve descripción de tu interés por la masonería:
-        </label>
-        <div class="input-wrapper">
-          <i class="fas fa-comment input-icon"></i>
-          <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
-        </div>
-
-        <!-- Botón -->
-        <div style="text-align: center; margin-top: 15px;">
-          <button type="submit" class="btn-enviar">
-            <i class="fas fa-paper-plane"></i> Enviar Solicitud
-          </button>
-        </div>
-
-       <div id="mensaje-formulario"></div>
-        
-        <!-- Mensaje -->
-        <p class="mensaje-discrecion">
-          Tu información será tratada con absoluta discreción.
-        </p>
-
-      </form>
-
-      <!-- Volver -->
-      <div class="volver-contenedor">
-       <a href="../index.html" class="btn-volver">
-          ← Volver a la página principal
-        </a>
       </div>
-
     </section>
-
   </main>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-
-    <div class="footer-contenido">
-
-      <div class="footer-info">
-        <p class="footer-titulo">
-          Respetable Logia Teófilo Leal N° 115
-        </p>
-        <p class="footer-ubicacion">
-          Oriente de Barquisimeto
-        </p>
-      </div>
-
-      <div class="footer-redes">
-
-        <a href="https://www.instagram.com/logiateofiloleal115/"
-          target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-
-        <a href="https://www.facebook.com/logiateofilo.leal.5"
-          target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-
-        <a href="https://mail.google.com/mail/?view=cm&to=logiateofiloleal115@gmail.com"
-          target="_blank" aria-label="Correo">
-          <i class="fas fa-envelope"></i>
-        </a>
-
-      </div>
-
+    <div>
+      <p class="footer-titulo">Logia Teófilo Leal N° 115</p>
+      <p>Verdad, Fraternidad, Disciplina y Trabajo.</p>
     </div>
 
-    <p class="footer-copy">
-      © 2026 Todos los derechos reservados.
-    </p>
+    <div class="footer-redes">
+      <a href="https://www.instagram.com/logiateofiloleal115/" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
 
+      <a href="https://www.facebook.com/logiateofilo.leal.5" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+
+      <a href="https://mail.google.com/mail/?view=cm&to=logiateofiloleal115@gmail.com" target="_blank" aria-label="Correo">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
   </footer>
 
-  <!-- JS -->
- <script src="../assets/js/app.js"></script>
-
+  <script src="../assets/js/app.js"></script>
 </body>
 </html>
