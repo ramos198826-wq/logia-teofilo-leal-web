@@ -171,10 +171,51 @@ function activarAnimacionesScroll() {
   secciones.forEach((section) => observer.observe(section));
 }
 
+function activarHeroCinematico() {
+  const heroBg = document.querySelector(".hero-bg");
+  const heroContent = document.querySelector(".hero-radical-content");
+  const scrollIndicator = document.querySelector(".hero-scroll-indicator");
+  const hero = document.querySelector(".hero-radical");
+
+  if (!heroBg || !hero) return;
+
+  let ticking = false;
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const heroHeight = hero.offsetHeight;
+
+        // Parallax: fondo se mueve a 0.38× la velocidad del scroll (ilusión de profundidad)
+        heroBg.style.transform = `translateY(${scrollY * 0.38}px)`;
+
+        // El contenido se desvanece suavemente al scrollear
+        if (heroContent) {
+          const progress = Math.min(scrollY / (heroHeight * 0.5), 1);
+          heroContent.style.opacity = 1 - progress * 0.65;
+          heroContent.style.transform = `translateY(${scrollY * 0.1}px)`;
+        }
+
+        // El indicador de scroll se oculta al primer desplazamiento
+        if (scrollIndicator) {
+          scrollIndicator.classList.toggle("oculto", scrollY > 50);
+        }
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   activarMensajeBienvenida();
   activarFormularioAspirante();
   activarNavbarSticky();
   activarCarruselCartelera();
   activarAnimacionesScroll();
+  activarHeroCinematico();
 });
